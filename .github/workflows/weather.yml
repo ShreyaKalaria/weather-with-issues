@@ -11,6 +11,8 @@ jobs:
       - name: get weather
         uses: ./weather
         id: weather
+        with:
+          title: ${{ github.event.issue.title }}
       - name: Close Issue
         uses: peter-evans/close-issue@v1
         with:
