@@ -1,2 +1,2 @@
 # weather-with-issues
-Open an issue in this repository to get the current weather
+Get current weather of a location by simply opening a GitHub Issue in this repository
