@@ -18,4 +18,4 @@ weather.find({
     let { current, location } = result[0];
     
     core.setOutput('closeIssueMsg', `Current Weather in ${current.observationpoint}: ${current.skytext} | Temperature: ${current.temperature}°${degreeType}\n\nThanks for using me! If you liked this, please star the repository :)`);
-}
+})
