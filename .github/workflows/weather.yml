@@ -8,7 +8,7 @@ jobs:
     if: startsWith(github.event.issue.title, 'weather')
     steps:        
       - uses: actions/checkout@v2
-      - name: get weather
+      - name: Get weather
         uses: ./weather
         id: weather
         with:
