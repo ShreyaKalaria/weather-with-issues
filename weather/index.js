@@ -1,21 +1,13 @@
 const core = require('@actions/core');
-const weather = require('weather-js');
+const fetch = require("node-fetch");
 
 let title = core.getInput('title');
 let city = title.split(" | ")[1];
 let degreeType = title.split(" | ")[2] || "C";
 
 if (!city) return core.setOutput('closeIssueMsg', "Uh oh! Looks like you didn't provide any location, please provide a location in the title.")
+if (!["C", "F"].includes(degreeType)) return core.setOutput('closeIssueMsg', "Uh oh! Looks like you the degree-type you provided is invalid. Please provide either C or F")
 
-weather.find({
-    search: city,
-    degreeType: degreeType
-}, function (err, result) {
-
-    if (result === undefined || result.length === 0) return core.setOutput('closeIssueMsg', "Looks like the location provided was invalid.")
-
-
-    let { current, location } = result[0];
-    
-    core.setOutput('closeIssueMsg', `Current Weather in ${current.observationpoint}: ${current.skytext} | Temperature: ${current.temperature}°${degreeType}\n\nThanks for using me! If you liked this, please star the repository :)`);
-})
+fetch(`https://weather-api.shadeoxidee.repl.co/?city=${city}&degreeType${degreeType}`)
+.then(res => res.json())
+.then(data => core.setOutput('closeIssueMsg', data.message))
