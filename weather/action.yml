@@ -1,4 +1,4 @@
-name: 'get weather'
+name: 'Get weather'
 description: 'Get the weather of a location'
 inputs:
   title:
